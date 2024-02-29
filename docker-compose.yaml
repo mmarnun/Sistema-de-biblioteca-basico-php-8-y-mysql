@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  app:
+    container_name: biblio_app
+    image: usuario/biblioteca:v1
+    restart: always
+    environment:
+      BASE_URL: http://biblio.org/
+      MYSQL_HOST: biblio-db
+      MYSQL_DATABASE: biblio
+      MYSQL_USER: biblio
+      MYSQL_PASSWORD: biblio
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+  db:
+    container_name: biblio-db
+    image: mariadb
+    environment:
+      MYSQL_USER: biblio
+      MYSQL_PASSWORD: biblio
+      MYSQL_DATABASE: biblio
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mariadb_data:/var/lib/mysql
+volumes:
+  mariadb_data:
