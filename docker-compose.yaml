@@ -6,7 +6,7 @@ services:
     image: usuario/biblioteca:v1
     restart: always
     environment:
-      BASE_URL: http://biblio.org/
+      BASE_URL: 'http://biblio.org/'
       MYSQL_HOST: biblio-db
       MYSQL_DATABASE: biblio
       MYSQL_USER: biblio
