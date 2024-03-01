@@ -19,10 +19,10 @@ RUN chown -R www-data:www-data /var/www/html
 
 COPY apache2.conf /etc/apache2/apache2.conf
 
-RUN a2enmod rewrite && a2enmod php8.2
+RUN a2enmod rewrite
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+COPY docker-entrypoint.sh /usr/local/
+RUN chmod +x /usr/local/docker-entrypoint.sh
 
 EXPOSE 80
 ENV MYSQL_USER biblio
@@ -31,4 +31,4 @@ ENV MYSQL_DATABASE biblio
 ENV MYSQL_HOST biblio-db
 ENV MYSQL_ROOT_PASSWORD root
 ENV BASE_URL http://biblio.org/
-CMD /usr/local/bin/docker-entrypoint.sh
+CMD /usr/local/docker-entrypoint.sh
